@@ -1,0 +1,553 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,500,600");
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400");
+* {
+  box-sizing: border-box;
+  position: relative;
+  font-family: "Raleway", sans-serif, 微軟正黑體;
+}
+
+#templine {
+  display: none;
+}
+
+#templine:checked + .top, .bgimage {
+  background: linear-gradient(to bottom, rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.5)) !important;
+}
+#templine:checked + .top .infos, #templine:checked + .top .temperature, .bgimage .infos, .bgimage .temperature {
+  opacity: 0 !important;
+}
+#templine:checked + .top .tempsvg, .bgimage .tempsvg {
+  top: 80px;
+  left: 0;
+  opacity: 1;
+}
+#templine:checked + .top .tempsvg .txttemp, #templine:checked + .top .tempsvg .txtdate, .bgimage .tempsvg .txttemp, .bgimage .tempsvg .txtdate {
+  transition-delay: 0.3s;
+  opacity: 1;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  background: linear-gradient(to bottom, #484c4f, #414345);
+  background-attachment: fixed;
+}
+
+.daybox {
+  margin: 0 auto;
+  width: 50%;
+  max-width: 350px;
+  box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
+  overflow: hidden;
+}
+.daybox:hover .bottom {
+  transition-delay: 0s;
+  height: 100px;
+}
+.daybox:hover .bottom .dayweather {
+  top: 5px;
+  opacity: 0.6;
+}
+.daybox:hover .dayweather:nth-child(1) {
+  transition-delay: 0.05s;
+}
+.daybox:hover .dayweather:nth-child(2) {
+  transition-delay: 0.1s;
+}
+.daybox:hover .dayweather:nth-child(3) {
+  transition-delay: 0.15s;
+}
+.daybox:hover .dayweather:nth-child(4) {
+  transition-delay: 0.2s;
+}
+.daybox:hover .dayweather:nth-child(5) {
+  transition-delay: 0.25s;
+}
+.daybox:hover .dayweather:nth-child(6) {
+  transition-delay: 0.3s;
+}
+.daybox:hover .dayweather:nth-child(7) {
+  transition-delay: 0.35s;
+}
+.daybox .top {
+  height: 350px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.4s;
+}
+.daybox .top .moon {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  border-radius: 100%;
+  top: 100px;
+  left: 50px;
+  box-shadow: 10px 10px;
+  animation: moon 0s infinite linear;
+}
+@keyframes moon {
+  0% {
+    box-shadow: 10px 10px;
+    transform: translate(-10px, -10px);
+  }
+  100% {
+    box-shadow: -10px -10px;
+    transform: translate(10px, 10px);
+  }
+}
+.daybox .top .tempsvg {
+  width: 100%;
+  top: -200px;
+  transform: scale(1.05);
+  transition: 0.8s;
+  fill: #eee;
+  opacity: 0;
+  filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.6));
+}
+.daybox .top .tempsvg circle {
+  fill: #eee;
+}
+.daybox .top .tempsvg polyline {
+  stroke: #eee;
+  fill: none;
+}
+.daybox .top .tempsvg .txttemp, .daybox .top .tempsvg .txtdate {
+  font-family: "Roboto", sans-serif !important;
+  font-weight: 300;
+  font-size: 12px;
+  opacity: 0;
+  transform: translate(-7px, 17px);
+  transition: 0.3s;
+  transition-delay: 0.3s;
+}
+.daybox .top .tempsvg .txtdate {
+  transform: translate(-9px, 32px);
+}
+.daybox .top .text_area {
+  display: inline;
+  position: absolute;
+  color: #eee;
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  text-shadow: 0px 1.5px rgba(0, 0, 0, 0.6);
+}
+.daybox .top .text_area .infos {
+  transition: 0.3s;
+}
+.daybox .top .text_area .infos .time {
+  font-size: 12px;
+}
+.daybox .top .text_area .infos .address {
+  font-size: 18px;
+}
+.daybox .top .text_area .temperature {
+  display: inline-block;
+  line-height: 120px;
+  font-size: 100px;
+}
+.daybox .top .text_area .description {
+  font-size: 15px;
+}
+.daybox .bottom {
+  transition-duration: 0.4s;
+  transition-delay: 0.4s;
+  overflow: hidden;
+  height: 10px;
+  display: flex;
+  justify-content: center;
+  background: #eee;
+  border-radius: 0 0 5px 5px;
+  padding-top: 8px;
+  color: #333;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.6);
+  z-index: 5;
+}
+.daybox .bottom .dayweather {
+  transition-duration: 0.3s;
+  display: none;
+  top: 100px;
+  opacity: 0;
+  display: inline-block;
+  width: calc(100% / 7 - 3px);
+  text-align: center;
+  cursor: pointer;
+}
+.daybox .bottom .dayweather h3 {
+  margin: 0;
+  margin-bottom: 5px;
+  font-size: 10px;
+}
+.daybox .bottom .dayweather svg {
+  width: 100%;
+  height: 40px;
+  max-width: 40px;
+}
+.daybox .bottom .dayweather svg path, .daybox .bottom .dayweather svg line, .daybox .bottom .dayweather svg circle {
+  fill: none;
+  stroke: #333;
+  stroke-width: 2px;
+  stroke-linecap: round;
+}
+.daybox .bottom .dayweather svg line {
+  animation: flicker 1.5s infinite linear;
+}
+@keyframes flicker {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.daybox .bottom .dayweather h4 {
+  margin: 0;
+  padding: 2px 0;
+  font-size: 9px;
+}
+.daybox .bottom .dayweather h4 div {
+  margin: 0;
+  padding: 1px 0;
+  display: inline-block;
+}
+.daybox .bottom .dayweather h4 .min {
+  opacity: 0.6;
+}
+.daybox .bottom .dayweather:hover {
+  opacity: 1;
+  transform: scale(1.16);
+}
+
+.weatherFrame {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(0.45);
+  top: 84%;
+  animation: float 1.5s infinite linear;
+}
+
+@keyframes float {
+  0% {
+    top: 84%;
+  }
+  50% {
+    top: 85%;
+  }
+  100% {
+    top: 84%;
+  }
+}
+svg {
+  width: 200px;
+  height: 200px;
+}
+
+.mainClearSky {
+  stroke: #eee;
+  stroke-width: 2px;
+  stroke-linecap: round;
+  filter: drop-shadow(0px 2px rgba(0, 0, 0, 0.6));
+}
+.mainClearSky circle {
+  fill: none;
+}
+.mainClearSky g {
+  animation: sunRotate 5s infinite linear;
+}
+
+@keyframes sunRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.outFewClouds {
+  filter: drop-shadow(0px 2px rgba(0, 0, 0, 0.6));
+}
+.outFewClouds svg {
+  stroke-linecap: round;
+  stroke: #eee;
+  stroke-width: 2;
+}
+.outFewClouds path {
+  fill: none;
+}
+
+.mainScatteredCloud {
+  filter: drop-shadow(0px 2px rgba(0, 0, 0, 0.6));
+}
+.mainScatteredCloud path {
+  fill: none;
+  stroke-width: 2px;
+  stroke: #eee;
+  stroke-linecap: round;
+}
+
+.outBrokenClouds {
+  filter: drop-shadow(0px 2px rgba(0, 0, 0, 0.6));
+}
+.outBrokenClouds path {
+  fill: none;
+  stroke-width: 2px;
+  stroke: #eee;
+  stroke-linecap: round;
+}
+
+.outShowerRain {
+  filter: drop-shadow(0px 2px rgba(0, 0, 0, 0.6));
+}
+.outShowerRain .rain {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 3px;
+  height: 15px;
+  background: #eee;
+  box-shadow: 0px 2px rgba(0, 0, 0, 0.6);
+  border-radius: 50px;
+  position: absolute;
+  animation: rainDrop 0.5s infinite linear;
+}
+.outShowerRain .rain1 {
+  transform: translate(-10px, 5px);
+  animation-delay: -0.5s;
+}
+.outShowerRain .rain2 {
+  transform: translate(12px, 5px);
+  animation-delay: -0.6s;
+}
+.outShowerRain .rain3 {
+  transform: translate(-28px, 5px);
+  animation-delay: -0.7s;
+}
+.outShowerRain path {
+  fill: none;
+  stroke-width: 2px;
+  stroke: #eee;
+  stroke-linecap: round;
+}
+
+.outRainDay .rain {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 3px;
+  height: 15px;
+  background: #eee;
+  box-shadow: 0px 2px rgba(0, 0, 0, 0.6);
+  border-radius: 50px;
+  position: absolute;
+  animation: rainDrop 0.5s infinite linear;
+}
+.outRainDay .rain1 {
+  animation-delay: -0.5s;
+}
+.outRainDay .rain2 {
+  transform: translate(20px, 5px);
+  animation-delay: -0.6s;
+}
+.outRainDay .rain3 {
+  transform: translate(-15px, 5px);
+  animation-delay: -0.7s;
+}
+@keyframes rainDrop {
+  0% {
+    top: 50%;
+    opacity: 1;
+  }
+  100% {
+    top: 65%;
+    opacity: 0;
+  }
+}
+.outRainDay .mainRainDay {
+  filter: drop-shadow(0px 2px rgba(0, 0, 0, 0.6));
+}
+.outRainDay .mainRainDay path {
+  fill: none;
+  stroke-width: 2px;
+  stroke: #eee;
+  stroke-linecap: round;
+}
+
+.opacity0 {
+  opacity: 0;
+}
+
+.opacity1 {
+  transition: 0.5s !important;
+  opacity: 1 !important;
+}
+
+.selected {
+  opacity: 1 !important;
+  transform: scale(1.16);
+}
+
+#menuinput {
+  display: none;
+}
+
+.menu {
+  position: absolute;
+  left: 3px;
+  z-index: 3;
+  cursor: pointer;
+  width: 45px;
+  height: 45px;
+  filter: drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.9));
+}
+.menu line {
+  transition: 0.3s;
+  stroke: #eee;
+  stroke-width: 5;
+  transform-origin: center;
+  stroke-linecap: round;
+}
+
+#menuinput:checked + .menu {
+  filter: drop-shadow(0px 0px 0px transparent);
+  transform: scale(0.8);
+}
+#menuinput:checked + .menu line {
+  stroke: #333;
+}
+#menuinput:checked + .menu .line1 {
+  transform: rotate(45deg) scaleX(1.2) translateY(1.5px);
+}
+#menuinput:checked + .menu .line2 {
+  transform: rotate(-45deg) scaleX(1.2) translateY(1.5px);
+}
+#menuinput:checked + .menu .line3 {
+  transform: rotate(-45deg) scaleX(1.2) translateY(-1.5px);
+}
+#menuinput:checked + .menu .line4 {
+  transform: rotate(45deg) scaleX(1.2) translateY(-1.5px);
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #eee;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #666;
+}
+
+.menuopen {
+  position: absolute;
+  z-index: 2;
+  width: 170px;
+  height: 360px;
+  padding-top: 28px;
+  left: -200px;
+  transition: 0.4s;
+  background: #eee;
+  border-radius: 5px 5px 5px 0;
+  box-shadow: 1px 0px 5px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
+.menuopen ul {
+  list-style: none;
+  padding: 0;
+  height: 300px;
+  overflow: auto;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+.menuopen ul li {
+  z-index: 2;
+  vertical-align: middle;
+  line-height: 35px;
+  font-size: 15px;
+  padding-left: 16px;
+  padding-right: 10px;
+  color: #333;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.menuopen ul li:hover {
+  background: #505050;
+  color: #eee;
+}
+.menuopen ul li:hover svg {
+  fill: #eee;
+}
+.menuopen ul li div {
+  display: inline-block;
+}
+.menuopen ul li div svg {
+  vertical-align: middle;
+  width: 16px;
+  height: 16px;
+  fill: #333;
+}
+.menuopen ul li div svg circle {
+  fill: none;
+}
+
+.menubottom {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  height: 350px;
+  display: none;
+}
+
+.blur {
+  filter: blur(5px) grayscale(30%);
+}
+
+.bgimage {
+  z-index: -1;
+  position: absolute;
+  width: 100%;
+  height: 350px;
+}
+.bgimage img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  height: 100%;
+  filter: brightness(110%);
+}
+
+.thistemp, .thisdate {
+  font-size: 18px !important;
+  font-weight: 400;
+  text-shadow: 0px 1px 3px white, 0px -1px 3px white !important;
+}
+
+.thistemp {
+  transform: translate(-13px, 22px) !important;
+}
+
+.thisdate {
+  transform: translate(-16px, 42px) !important;
+}

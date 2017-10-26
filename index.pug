@@ -1,0 +1,154 @@
+.daybox#daybox
+  label
+    input#menuinput(type="checkbox")
+    svg.menu(viewbox="-50 -50 100 100")
+      g
+        line.line1(x1=0 y1=10 x2=25 y2=10)
+        line.line2(x1=0 y1=10 x2=-25 y2=10)
+        line.line3(x1=0 y1=-10 x2=25 y2=-10)
+        line.line4(x1=0 y1=-10 x2=-25 y2=-10)
+  .menubottom
+  .bgimage
+    img(src='')
+  .menuopen
+    ul
+      li 
+        .liststyle 
+        .location Keelung
+      li#firstclick 
+        .liststyle 
+        .location Taipei
+      li 
+        .liststyle 
+        .location Taoyuan
+      li 
+        .liststyle 
+        .location Hsinchu
+      li 
+        .liststyle 
+        .location Taichung
+      li 
+        .liststyle 
+        .location Jiayi
+      li 
+        .liststyle 
+        .location Tainan
+      li 
+        .liststyle 
+        .location Kaohsiung
+      li 
+        .liststyle 
+        .location Taitung
+      li 
+        .liststyle 
+        .location Hualian
+      li 
+        .liststyle 
+        .location Yilan
+  label
+    input#templine(type="checkbox")
+    .top
+      //.moon
+      .outFewClouds.weatherFrame
+        svg#svgtTempLine(viewbox='0 0 100 100')
+          path(d='M70.483,47.183C70.314,41.532,65.691,37,60,37\
+    c-1.492,0-2.908,0.315-4.193,0.876c-2.598-3.179-6.547-5.21-10.973-5.21c-7.824,0-14.167,6.343-14.167,14.167\
+    c0,0.122,0.015,0.239,0.018,0.36c-0.172-0.009-0.343-0.026-0.518-0.026c-5.523,0-10,4.477-10,10c0,5.522,4.477,10,10,10L70.5,67.15\
+    c5.367-0.177,9.667-4.573,9.667-9.983C80.167,51.751,75.858,47.352,70.483,47.183z')
+          path(d='M77.594,50.854')
+          path(d='M55.342,36.398\
+    c1.905-2.705,4.993-4.532,8.553-4.707c6.136-0.298,11.354,4.435,11.652,10.572c0.093,1.913-0.303,3.736-1.077,5.349')
+          line(x1='72.583', y1='33', x2='76.124', y2='29.249')
+          line(x1='65.5', y1='30', x2='65.5', y2='25')
+          line(x1='77', y1='40.5', x2='82', y2='40.5')
+          line(x1='57.667', y1='31.667', x2='53.875', y2='27.875')
+      svg.tempsvg(viewbox="0 -100 420 300")
+        circle(cx=0 cy=-45 r=3)
+        text.txttemp(x=0 y=106) 
+        text.txtdate(x=0 y=10)
+
+        circle(cx=70 cy=-45 r=3)
+        text.txttemp(x=70 y=40)
+        text.txtdate(x=70 y=10)
+
+        circle(cx=140 cy=-45 r=3)
+        text.txttemp(x=140 y=60)
+        text.txtdate(x=140 y=10)
+
+        circle(cx=210 cy=-45 r=3)
+        text.txttemp(x=210 y=70)
+        text.txtdate(x=210 y=10)
+
+        circle(cx=280 cy=-45 r=3)
+        text.txttemp(x=280 y=90)
+        text.txtdate(x=280 y=10)
+
+        circle(cx=350 cy=-45 r=3)
+        text.txttemp(x=350 y=80)
+        text.txtdate(x=350 y=10)
+
+        circle(cx=420 cy=-45 r=3)
+        text.txttemp(x=420 y=50)
+        text.txtdate(x=420 y=10)
+
+        polyline(points="0 -45, 70 -45, 140 -45, 210 -45, 280 -45, 350 -45, 420 -45")
+
+      .text_area
+        .infos
+          .time 
+          .address 
+        .temperature 
+          .load(style="font-size: 20px") loading...
+        .description
+  .bottom
+    .dayweather#today
+      h3 MON
+      svg.sun(viewbox="-50 -50 100 100")
+        circle(cx=0 cy=0 r=25)
+      h4
+        .min 23°C
+        .max 25°C
+    .dayweather
+      h3 TUE
+      svg.sun(viewbox="-50 -50 100 100")
+        circle(cx=0 cy=0 r=25)
+      h4
+        .min 23°C
+        .max 25°C
+    .dayweather
+      h3 MON
+      svg.sun(viewbox="-50 -50 100 100")
+        circle(cx=0 cy=0 r=25)
+      h4
+        .min 23°C
+        .max 25°C  
+    .dayweather
+      h3 MON
+      svg.sun(viewbox="-50 -50 100 100")
+        circle(cx=0 cy=0 r=25)
+      h4
+        .min 23°C
+        .max 25°C
+    .dayweather
+      h3 MON
+      svg.sun(viewbox="-50 -50 100 100")
+        circle(cx=0 cy=0 r=25)
+      h4
+        .min 23°C
+        .max 25°C
+    .dayweather
+      h3 MON
+      svg.sun(viewbox="-50 -50 100 100")
+        circle(cx=0 cy=0 r=25)
+      h4
+        .min 23°C
+        .max 25°C
+    .dayweather
+      h3 MON
+      svg.sun(viewbox="-50 -50 100 100")
+        circle(cx=0 cy=0 r=25)
+      h4
+        .min 23°C
+        .max 25°C
+        
+      

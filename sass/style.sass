@@ -1,0 +1,468 @@
+*
+  box-sizing: border-box
+  //border: 1px solid
+  position: relative
+  font-family: 'Raleway', sans-serif, 微軟正黑體
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,500,600')
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400')
+  
+@mixin size($w: 50px, $h: 50px)
+  width: $w
+  height: $h
+@mixin center
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+#templine
+  display: none
+#templine:checked + .top, .bgimage
+  background: linear-gradient(to bottom, rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.5)) !important
+  .infos, .temperature
+    opacity: 0 !important
+  .tempsvg
+    top: 80px
+    left: 0
+    opacity: 1
+    .txttemp, .txtdate
+      transition-delay: 0.3s 
+      opacity: 1
+  //.bgimage
+body, html
+  width: 100%
+  height: 100%
+  display: flex
+  justify-content: center
+  align-items: center
+  
+body
+  background: linear-gradient(to bottom, #484c4f, #414345) 
+  background-attachment: fixed
+  
+
+.daybox
+  
+  margin: 0 auto
+  width: 50%
+  max-width: 350px
+  box-shadow: 0px 1px 15px rgba(black, 0.6)
+  border-radius: 5px
+  overflow: hidden
+  &:hover
+    & .bottom
+      transition-delay: 0s
+      height: 100px
+    & .bottom .dayweather
+      top: 5px
+      opacity: 0.6
+    .dayweather:nth-child(1)
+      transition-delay: 0.05s
+    .dayweather:nth-child(2)
+      transition-delay: 0.1s
+    .dayweather:nth-child(3)
+      transition-delay: 0.15s
+    .dayweather:nth-child(4)
+      transition-delay: 0.2s
+    .dayweather:nth-child(5)
+      transition-delay: 0.25s
+    .dayweather:nth-child(6)
+      transition-delay: 0.3s
+    .dayweather:nth-child(7)
+      transition-delay: 0.35s
+  .top
+    height: 350px
+    border-radius: 5px 5px 0 0
+    
+    //background: linear-gradient(to bottom, rgba(#141E30, 1), rgba(#243B55, 1))
+    
+    //background-image: url('https://dl.dropboxusercontent.com/s/66epnihzqap3gm5/sunny.jpg?dl=0')
+    //background-color: rgba(blue, 1)
+    overflow: hidden
+    cursor: pointer
+    transition: 0.4s
+    //img
+      opacity: 0.5
+    
+    .moon
+      +size()
+      position: absolute
+      border-radius: 100%
+      top: 100px
+      left: 50px
+      box-shadow: 10px 10px
+      animation: moon 0s infinite linear
+      
+    @keyframes moon
+      0%
+        box-shadow: 10px 10px
+        transform: translate(-10px, -10px)
+      100%
+        box-shadow: -10px -10px
+        transform: translate(10px, 10px)
+    .tempsvg
+      width: 100%
+      top: -200px
+      transform: scale(1.05)
+      transition: 0.8s
+      fill: #eee
+      opacity: 0
+      filter: drop-shadow(0px 1px 2px rgba(black, 0.6))
+      circle
+        fill: #eee
+      polyline
+        stroke: #eee
+        fill: none
+      .txttemp, .txtdate
+        font-family: 'Roboto', sans-serif !important
+        font-weight: 300
+        font-size: 12px
+        opacity: 0
+        transform: translate(-7px, 17px)
+        transition: 0.3s
+        transition-delay: 0.3s
+      .txtdate
+        transform: translate(-9px, 32px)
+        
+    .text_area
+      display: inline
+      position: absolute
+      color: #eee
+      top: 42%
+      left: 50%
+      transform: translate(-50%, -50%)
+      text-align: center
+      text-shadow: 0px 1.5px rgba(black, 0.6)
+      .infos
+        transition: 0.3s
+        //font-size: 15px
+        .time
+          font-size: 12px
+        .address
+          font-size: 18px
+      .temperature
+        display: inline-block
+        line-height: 120px
+        font-size: 100px
+      .description
+        font-size: 15px
+  .bottom
+    transition-duration: 0.4s
+    transition-delay: 0.4s
+    overflow: hidden
+    height: 10px
+    display: flex
+    justify-content: center
+    background: #eee
+    border-radius: 0 0 5px 5px
+    padding-top: 8px
+    color: #333
+    box-shadow: 0px 1px 5px rgba(black, 0.6)
+    z-index: 5
+    .dayweather
+      transition-duration: 0.3s
+      display: none
+      top: 100px 
+      opacity: 0 
+      display: inline-block
+      width: calc(100% / 7 - 3px)
+      text-align: center
+      cursor: pointer
+      h3
+        margin: 0
+        margin-bottom: 5px
+        font-size: 10px
+      svg
+        width: 100%
+        height: 40px
+        max-width: 40px
+        path, line, circle
+          fill: none
+          stroke: #333
+          stroke-width: 2px
+          stroke-linecap: round
+        line
+          animation: flicker 1.5s infinite linear
+        @keyframes flicker
+          0%
+            opacity: 1
+          50%
+            opacity: 0.3
+          100%
+            opacity: 1
+      h4
+        margin: 0
+        padding: 2px 0
+        font-size: 9px
+        div
+          margin: 0
+          padding: 1px 0
+          display: inline-block
+        .min
+          opacity: 0.6
+      &:hover
+        opacity: 1
+        transform: scale(1.16)
+    
+    
+//-------------------------------------------   
+//-------------mainWeather-------------------
+//-------------------------------------------
+
+
+.weatherFrame
+  +center
+  transform: translate(-50%, -50%) scale(0.45)
+  top: 84%
+  animation: float 1.5s infinite linear
+@keyframes float
+  0%
+    top: 84%
+  50%
+    top: 85%
+  100%
+    top: 84%
+svg
+  +size(200px, 200px)
+  
+//---------------ClearSky---------------------  
+.mainClearSky
+  stroke: #eee
+  stroke-width: 2px
+  stroke-linecap: round
+  filter: drop-shadow(0px 2px rgba(black, 0.6))
+  circle
+    fill: none
+  g
+    animation: sunRotate 5s infinite linear
+@keyframes sunRotate
+  0%
+    transform: rotate(0deg)
+  50%
+    transform: rotate(180deg)
+  100%
+    transform: rotate(360deg)
+//------------------------FewClouds-----------------------
+.outFewClouds
+  filter: drop-shadow(0px 2px rgba(black, 0.6))
+  svg
+    stroke-linecap: round
+    stroke: #eee
+    stroke-width: 2
+  path
+    fill: none
+    
+    
+  
+//------------------ScatteredClouds----------------------------    
+.mainScatteredCloud
+  filter: drop-shadow(0px 2px rgba(black, 0.6))
+  path
+    fill: none
+    stroke-width: 2px
+    stroke: #eee
+    stroke-linecap: round
+//-------------------BrokenClouds----------------------
+.outBrokenClouds
+  filter: drop-shadow(0px 2px rgba(black, 0.6))
+  path
+    fill: none
+    stroke-width: 2px
+    stroke: #eee
+    stroke-linecap: round
+    
+//----------------------ShowerRain----------------------  
+.outShowerRain
+  .rain
+    +center
+    +size(3px, 15px)
+    background: #eee
+    box-shadow: 0px 2px rgba(black, 0.6)
+    border-radius: 50px
+    position: absolute
+    animation: rainDrop 0.5s infinite linear
+  .rain1
+    transform: translate(-10px, 5px)
+    animation-delay: -0.5s
+  .rain2
+    transform: translate(12px, 5px)
+    animation-delay: -0.6s
+  .rain3
+    transform: translate(-28px, 5px)
+    animation-delay: -0.7s
+  filter: drop-shadow(0px 2px rgba(black, 0.6))
+  path
+    fill: none
+    stroke-width: 2px
+    stroke: #eee
+    stroke-linecap: round
+    
+//----------------------RainDay----------------------    
+.outRainDay
+  .rain
+    +center
+    +size(3px, 15px)
+    background: #eee
+    box-shadow: 0px 2px rgba(black, 0.6)
+    border-radius: 50px
+    position: absolute
+    animation: rainDrop 0.5s infinite linear
+  .rain1
+    //transform: translate(-50%, 5px)
+    animation-delay: -0.5s
+  .rain2
+    transform: translate(20px, 5px)
+    animation-delay: -0.6s
+  .rain3
+    transform: translate(-15px, 5px)
+    animation-delay: -0.7s
+   
+  @keyframes rainDrop
+    0%
+      top: 50%
+      opacity: 1
+    100%
+      top: 65%
+      opacity: 0
+  .mainRainDay
+    filter: drop-shadow(0px 2px rgba(black, 0.6))
+    path
+      fill: none
+      stroke-width: 2px
+      stroke: #eee
+      stroke-linecap: round
+      
+      
+      
+      
+      
+      
+//------------fadeIn----------------
+.opacity0
+  opacity: 0
+.opacity1
+  transition: 0.5s !important
+  opacity: 1 !important
+
+  
+//-----------------------
+.selected
+  opacity: 1 !important
+  transform: scale(1.16)
+
+
+
+//--------------menu---------------------
+#menuinput
+  display: none
+.menu
+  //border: 1px solid
+  position: absolute
+  left: 3px
+  z-index: 3
+  cursor: pointer
+  +size(45px, 45px)
+  filter: drop-shadow(0px 1px 3px rgba(black, 0.9))
+  line
+    transition: 0.3s
+    stroke: #eee
+    stroke-width: 5
+    transform-origin: center
+    stroke-linecap: round
+  
+#menuinput:checked + .menu
+  filter: drop-shadow(0px 0px 0px rgba(black, 0))
+  transform: scale(0.8)
+  line
+    stroke: #333
+  .line1
+    transform: rotate(45deg) scaleX(1.2) translateY(1.5px)
+  .line2
+    transform: rotate(-45deg) scaleX(1.2) translateY(1.5px)
+  .line3
+    transform: rotate(-45deg) scaleX(1.2) translateY(-1.5px)
+  .line4
+    transform: rotate(45deg) scaleX(1.2) translateY(-1.5px)
+    
+::-webkit-scrollbar
+  //display: none
+::-webkit-scrollbar
+  width: 5px
+ 
+::-webkit-scrollbar-track
+  background: #eee
+::-webkit-scrollbar-thumb
+  background: #666
+.menuopen
+  position: absolute
+  z-index: 2
+  +size(170px, 360px)
+  padding-top: 28px
+  left: -200px
+  transition: 0.4s
+  //background: #6a6e72
+  background: #eee
+  border-radius: 5px 5px 5px 0
+  box-shadow: 1px 0px 5px rgba(black, 0.6)
+  overflow: hidden
+  
+  ul
+    //border: 1px solid
+    list-style: none
+    padding: 0
+    height: 300px
+    //overflow-Y: scroll
+    overflow: auto
+    box-shadow: inset 0 1px 2px rgba(black, 0.6)
+    li
+      z-index: 2
+      vertical-align: middle
+      line-height: 35px
+      font-size: 15px
+      padding-left: 16px
+      padding-right: 10px
+      color: #333
+      cursor: pointer
+      transition: 0.2s
+      &:hover
+        background: #505050
+        color: #eee
+        svg
+          fill: #eee
+      div
+        display: inline-block
+        svg
+          vertical-align: middle
+          +size(16px, 16px)
+          fill: #333
+          circle
+            fill: none
+
+//--------------menubottom--------------------
+.menubottom
+  position: absolute
+  z-index: 2
+  +size(100%, 350px)
+  display: none
+            
+//--------------blur------------------ 
+.blur
+  filter: blur(5px) grayscale(30%)
+//-------------bgimage---------------
+.bgimage
+  z-index: -1
+  position: absolute
+  +size(100%, 350px)
+  img
+    +center
+    +size(auto, 100%)
+    filter: brightness(110%)
+.thistemp, .thisdate
+  font-size: 18px !important
+  font-weight: 400
+  text-shadow: 0px 1px 3px white, 0px -1px 3px white !important 
+.thistemp
+  transform: translate(-13px, 22px) !important 
+.thisdate
+  transform: translate(-16px, 42px) !important
+  
+  
